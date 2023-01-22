@@ -10,10 +10,22 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
+    behaviors {
+        tp: tap_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TAP_PREFERRED";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        }; 
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
-        Base {
+        default_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  Q  |  W  |  E  |  R  |  T      |   |  Y        |  U   |  I  |  O  |  P  | BKSP |
             // | CTRL |  A  |  S  |  D  |  F  |  G      |   |  H        |  J   |  K  |  L  |  ;  |  '   |
@@ -29,7 +41,7 @@
             >;
         };
 
-        Lower {
+        layer_below {
             // -----------------------------------------------------------------------------------------
            // |      |  !  |  @  |  #  |  $  |    %     |   |  ^          |  &   |  *  |  (  |  )  |   \   |
            // |      |  1  |  2  |  3  |  4  |    5     |   |  -          |  =   |  `  |  [  |  ]  |  "|"  |
@@ -45,7 +57,7 @@
             >;
         };
 
-        Raise {
+        layer_above {
             // -----------------------------------------------------------------------------------------
             // |       |  F1  |  F2  |  F3   |  F4   |  F5        |   |  F6  |  F7      |  F8       |  F9       |  F10  |     |
             // |       | BRI+ | BRI- | Vol - | Vol + | Play/Pause |   |      | UP       | RGT       |  DWN      | LFT   |     |
